@@ -33,8 +33,12 @@ for url in matching_urls:
     # Create a BeautifulSoup object to parse the page content
     page_soup = BeautifulSoup(page_content, "html.parser")
 
-    # Extract the body text (assuming it is within a specific HTML tag like <body>)
-    body_text = page_soup.body.get_text()
+    # Extract the text from the div with class "article-paragraph"
+    for div in page_soup.find_all("div", class_="article-paragraph"):
+        text = div.get_text()
+        corpus_text += text + "\n"
 
-    # Print or process the extracted body text as needed
-    print(body_text)
+# Save the corpus text to a text file
+filename = "Corpus_0.txt"
+with open(filename, "w") as file:
+    file.write(corpus_text)
