@@ -3,42 +3,61 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import time
+import csv
+import random
+from cleantext import clean
 
-# Retrieve the HTML content of the website
-url = "https://cn.nytimes.com"  # 这里是否需要在往下写一层？
-response = requests.get(url)
-html_content = response.text
 
-# Create a BeautifulSoup object to parse the HTML
-soup = BeautifulSoup(html_content, "html.parser")
 
-# Define your regular expression pattern to match the URLs
-#url_pattern = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+/your-pattern-here"
-#上面一行被我注释掉了，因为我不明白ChatGPT写了一个什么玩意儿正则。我重写一行，在下面。
-#这一行正则的目的是，找到纽约时报中文网上，world或者china板块的，2020-2023年的所有文章的链接。
-url_pattern = r"https?://cn.nytimes.com/[world|china]/202[0|1|2|3]\d{4}/\S+/"
-pattern = re.compile(url_pattern)
 
 # Extract the URLs that match the pattern
 matching_urls = []
-for anchor in soup.find_all("a", href=pattern):
-    url = anchor.get("href")
-    matching_urls.append(url)
 
+print(matching_urls)
+
+visited_urls = []
 # Extract the body text from the pages with matching URLs
 for url in matching_urls:
-    response = requests.get(url)
+    if url in visited_urls:
+        continue
+
+    response = requests.get(base_url + url + 'dual/')
+    visited_urls.append(url)
+    print(url, ": ", response.status_code)
     page_content = response.text
 
     # Create a BeautifulSoup object to parse the page content
     page_soup = BeautifulSoup(page_content, "html.parser")
 
     # Extract the text from the div with class "article-paragraph"
+    rows = []
+    current_row = []
+    index = 0
+
+    # Extract the text from the div with class "article-paragraph"
     for div in page_soup.find_all("div", class_="article-paragraph"):
         text = div.get_text()
-        corpus_text += text + "\n"
 
-# Save the corpus text to a text file
-filename = "Corpus_0.txt"
-with open(filename, "w") as file:
-    file.write(corpus_text)
+        if index % 2 == 0:
+            # english paragraph
+            text = clean(text, lang="en", lower=False, no_line_breaks=True)
+            current_row.append(text.strip())
+        else:
+            text = clean(text, to_ascii=False, lower=False, no_line_breaks=True)
+            text = re.sub(',', '，', text)
+            current_row.append(text.strip())
+            rows.append(current_row)
+            current_row = []
+        index += 1
+
+    print(url, ": writing csv...")
+    with open("corpus.csv", "a") as corpus:
+        writer = csv.writer(corpus)
+        writer.writerows(rows)
+        corpus.close()
+        print(url, ": csv written")
+
+    sleep_duration = random.randint(4, 18)
+    time.sleep(sleep_duration)
+
