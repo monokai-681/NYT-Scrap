@@ -1,9 +1,10 @@
-import requests
-from bs4 import BeautifulSoup
 import time
 import re
 import csv
 import random
+
+import requests
+from bs4 import BeautifulSoup
 
 # Retrieve the HTML content of the website
 base_url_china = "https://cn.nytimes.com/china/"  # 这里是否需要在往下写一层？

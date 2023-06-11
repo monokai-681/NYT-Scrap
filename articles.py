@@ -1,12 +1,13 @@
 #主体是GPT写的。这个代码的目的是获取纽约时报中文网上，world或者china板块的，2020-2023年的所有文章body部分的文本。
 
-import requests
-from bs4 import BeautifulSoup
 import re
 import time
 import csv
 import random
+
 from cleantext import clean
+import requests
+from bs4 import BeautifulSoup
 
 visited_urls = []
 base_url = "https://cn.nytimes.com/"  # 这里是否需要在往下写一层？
