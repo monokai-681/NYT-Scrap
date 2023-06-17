@@ -1,8 +1,8 @@
 # NYT scapped bilingual corpus MT Evaluation Project
 
-Project integrity disclaimer:
+_Project integrity disclaimer:_ 
 
-Mr. Wang Yun, "mogita", is a highly skilled full-stack developer based in Singapore and a long-time friend of mine. As the commit history suggests, mogita provided assistance in the development of an ad hoc Python scraper and offered verbal guidance on file organization methodologies. However, it is important to note that **mogita was not involved in any capacity in the corpora processing or the machine translation evaluation tasks.** He has never been asked or expected to do so, nor does he possess the expertise in these tasks.
+_Mr. Wang Yun, "mogita", is a highly skilled full-stack developer based in Singapore and a long-time friend of mine. As the commit history suggests, mogita provided assistance in the development of an ad hoc Python scraper and offered verbal guidance on file organization methodologies. However, it is important to note that **mogita was not involved in any capacity in the corpora processing or the machine translation evaluation tasks.** He has never been asked or expected to do so, nor does he possess the expertise in these tasks._
 
 ## Overview
 
