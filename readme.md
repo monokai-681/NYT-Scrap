@@ -65,18 +65,19 @@ The manual evalution is done on a 1 to 4 scoring scale to both outputs, on both 
 For Adequacy, the the Adapted MT output scores 211 against the Baseline's 208; improvment is slightly more pronounced in the Fluency department, as Adapted MT scores 239 against Baseline's 226.
 
 However, if all segement pairs are considered, and the default evaluation of the identical segments is 2.5, the Adapted MT scores, in the Fluency:
-$$
+
+```math
 441 * 2.5 + 239 = 1341.5
-$$
+```
 while the Baseline scores:
-$$
+```math
 441 * 2.5 + 226 = 1328.5
-$$
+```
 
 If we consider the 1-4 scoring scale as linear, the improment is about
-$$
+```math
 1341.5 / 1328.5  - 1 ≈ 1%
-$$
+```
 
 
 ---
