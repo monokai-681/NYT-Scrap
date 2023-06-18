@@ -79,8 +79,9 @@ If we assume that the 1-4 scoring scale is linear, the Fluency improvement is ab
 ```
 
 ### Human Evaluation Bias
+
 It has to be admitted that the author cannot avoid bias towards the Adapted MT output during the Manual Evaluation, as he is fully aware that this work will also be evaluated. This might contribute to a higher evaluation of the Adapted MT than it deserves.
----
+
 
 ## Error Analysis in the Adapted MT Output
 
