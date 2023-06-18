@@ -1,8 +1,8 @@
 # NYT scapped bilingual corpus MT Evaluation Project
 
-_Project integrity disclaimer:_ 
+Project integrity disclaimer:
 
-_Mr. Wang Yun, "mogita", is a highly skilled full-stack developer based in Singapore and a long-time friend of mine. As the commit history suggests, mogita provided assistance in the development of an ad hoc Python scraper and offered verbal guidance on file organization methodologies. However, it is important to note that **mogita was not involved in any capacity in the corpora processing or the machine translation evaluation tasks.** He has never been asked or expected to do so, nor does he possess the expertise in these tasks._
+Mr. Wang Yun, "mogita", is a highly skilled full-stack developer based in Singapore and a long-time friend of mine. As the commit history suggests, mogita provided assistance in the development of an ad hoc Python scraper and offered verbal guidance on file organization methodologies. However, it is important to note that **mogita was not involved in any capacity in the corpora processing or the machine translation evaluation tasks.** He has never been asked or expected to do so, nor does he possess the expertise in these tasks.
 
 ## Overview
 
@@ -10,7 +10,7 @@ This is a Machine Translation Evaluation project for the June 2023 Exam for the 
 
 The project starts with an ad hoc Python scraper based on Beautifulsoup to build **a parallel corpus of English and human-translated Simplified Chinese of political news from The New York Times Chinese site.** The date range is from 2020 to June 2023.
 
-**A parallel corpus of 25k pairs of segments is obtained, with 1.1m English words and 2m Chinese characters**. Later, 12k pairs of segments are used as the training data, 0.3k paris as tuning, and 0.5k as test data. ModernMT is used to train an adapted MT system to improve the MT translation quality. Later, COMET, BERTScore, and BLEU are used for Automatic Evalution.
+**A parallel corpus of 25k pairs of segments is obtained, with 1.1m English words and 2m Chinese characters**. Later, 12k pairs of segments are used as the training data, 0.3k paris as tuning, and 0.5k as test data. ModernMT is used to train an adapted MT system to improve the MT translation quality. Finally, COMET, BERTScore, and BLEU are used for Automatic Evalution, and a manual evalution is also added.
 
 Unfortunately, the improvement can only be described as modest according to Automatic Evaluation indicators. A manual evaluation is also done, which demostrates that there is some subtle improvement in the translation output of the Adapted MT, particularly in word order, thus resulting a higher Fluency evalution.
 
@@ -48,9 +48,38 @@ Evaluation files are in the `evaluations` folder.
 
 ## Automatic Evaluation Results
 
-## 
+There is only some modest improvments by the Adapted MT output measured by the Automatic Evaluation methods.
 
-In all 519 segments, there are 79 segments with differences. The improvement is microscopical. 
+* BERTScore model does not reveal any improvement nor deterioration in the Adatped MT output, as both Baseline and Adapted evaluated `0.873` against the Reference.
+* COMET model indicates that the Adapted MT only improved microscopically, as it measures at `0.849` against Baseline's `0.848`.
+* BLEU even shows some deterioration, as the Adapted MT measured `5.86` against Baseline's `5.90`.
+
+*I would like to point out that as a native speaker of Chinese, I disagree some of the scorings by BLEU on the individual segment level.*
+
+## Manual Evalution
+
+The manual evalution does give more credit to the Adapted MT output, but the improvement is still insignificant.
+
+The manual evalution is done on a 1 to 4 scoring scale to both outputs, on both Adequacy and Fluency dimensions. In all 519 segments, there are only 78 segments with discrepancies. The other 441 identical segment pairs are removed from the evaluation.
+
+For Adequacy, the the Adapted MT output scores 211 against the Baseline's 208; improvment is slightly more pronounced in the Fluency department, as Adapted MT scores 239 against Baseline's 226.
+
+However, if all segement pairs are considered, and the default evaluation of the identical segments is 2.5, the Adapted MT scores, in the Fluency:
+$$
+441 * 2.5 + 239 = 1341.5
+$$
+while the Baseline scores:
+$$
+441 * 2.5 + 226 = 1328.5
+$$
+
+If we consider the 1-4 scoring scale as linear, the improment is about
+$$
+1341.5 / 1328.5  - 1 ≈ 1%
+$$
+
+
+---
 
 Manual evaluation
 - Some inevitable bias towards Adapted translation, even through the improvement is *microscopical*.
