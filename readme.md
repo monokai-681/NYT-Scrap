@@ -2,7 +2,7 @@
 
 Project integrity disclaimer:
 
-*Mr. Wang Yun, "mogita", is a highly skilled full-stack developer based in Singapore and a long-time friend of mine. As the commit history suggests, mogita assisted in developing an ad hoc Python scraper and offered verbal guidance on file organisation methodologies. However, it is important to note that **mogita was not involved in any capacity in the corpora processing or the machine translation evaluation tasks.** He has never been asked or expected to do so, nor does he possess the expertise in these tasks.*
+*Mr. Wang Yun, "mogita", is a highly skilled full-stack developer based in Singapore and a long-time friend of the author. As the commit history suggests, mogita assisted in developing an ad hoc Python scraper and offered verbal guidance on file organisation methodologies. However, it is important to note that **mogita was not involved in any capacity in the corpora processing or the machine translation evaluation tasks.** He has never been asked or expected to do so, nor does he possess the expertise in these tasks.*
 
 ## Overview
 
@@ -78,12 +78,25 @@ If we assume that the 1-4 scoring scale is linear, the Fluency improvement is ab
 1341.5 / 1328.5  - 1 ≈ 1\%
 ```
 
+### Human Evaluation Bias
+It has to be admitted that the author cannot avoid bias towards the Adapted MT output during the Manual Evaluation, as he is fully aware that this work will also be evaluated. This might contribute to a higher evaluation of the Adapted MT than it deserves.
 ---
 
-## Notes and Thoughts
+## Error Analysis in the Adapted MT Output
 
-A significant part of the turning work is the reordering of words (in modern Chinese, a *word* is a unit of meaning that can comprise one or more Chinese characters), or in some cases, sub-sentences. This is clearly reflected in the Adapted MT output. However, the adapted ModernMT engine has difficulties correctly deciding when and on what part of the sentence to re-order, sometimes resulting in a worse translation than the Baseline.
+### Error Analysis
 
-The Manual Evaluation shows that the Adapted MT output performs better in Fluency when the sentences are shorter.
+A significant part of the turning work is the reordering of words (in modern Chinese, a *word* is a unit of meaning that can comprise one or more Chinese characters), or in some cases, sub-sentences. This is clearly reflected in the Adapted MT output. However, the adapted ModernMT engine still **has difficulties correctly deciding when and on what part of the sentence to re-order, sometimes resulting in a worse translation than the Baseline.**
 
-It has to be admitted that the author cannot avoid bias towards the Adapted MT output during the Manual Evaluation, as he is fully aware that this work will also be evaluated. This might contribute to a higher evaluation of the Adapted MT than it should be.
+The Manual Evaluation shows that the Adapted MT output performs better in Fluency when the sentences are shorter. In other words, **the Baseline MT output suffers more from long sentences.**
+
+## Conclusion
+
+The author believes the ideal process to translate political news has already been implemented in some media organisations: Machine Translation, then post-editing by a person with journalism expertise and deep background knowledge in the reported matter.
+
+Some mistakes by the Machine Translation in this project are made due to incorrect semantic understanding of certain verbs or nouns in the particular scenario, of which sometimes even a context-aware Machine Translation solution isn't capable.
+
+The author thinks the advance of LLM might help in solving this problem. LLMs are trained with astronomical amounts of data and facts and can understand natural language and usages of particular vocabulary in specific scenarios. Of course, LLMs wouldn't be an immediate and perfect solution, as they themselves also hallucinate and provide inaccurate information. Still, they do reveal a promising future in further automating the translation process.
+
+
+#UniBo/MT
