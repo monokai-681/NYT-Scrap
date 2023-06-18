@@ -76,7 +76,7 @@ while the Baseline scores:
 
 If we consider the 1-4 scoring scale as linear, the improment is about
 ```math
-1341.5 / 1328.5  - 1 ≈ 1%
+1341.5 / 1328.5  - 1 ≈ 1\%
 ```
 
 
